@@ -5,7 +5,6 @@
  * PID: A15773774
 
  */
-import java.util.Arrays;
 
 /**
  * First PA of DSC30! Familiarizing with Java loops, matrixes
@@ -21,99 +20,21 @@ public class Startup {
     private static final int ASCII_MIN_LOWER = 97;
     private static final int ASCII_MAX_LOWER = 122;
     private static final int TRIPLET_LEN = 3;
-
-    public static void main(String[] args) {
-        // method 1: arrEvenOdd
-        /* int[] arr1 = {0, 1, 2, 3, 4, 5};
-        boolean[] output1 = {true, true, true, true, true, true};
-        int[] arr2 = {0, 1, 2, 2, 1, 0};
-        boolean[] output2 = {true, true, true, false, false, false};
-        int[] arr3 = {1, 3, 5, 7, 9, 11};
-        boolean[] output3 = {false, true, false, true, false, true};
-        System.out.println(Arrays.toString(arrEvenOdd(arr1))); // == output1);
-        System.out.println(Arrays.toString(arrEvenOdd(arr2))); // == output2);
-        System.out.println(Arrays.toString(arrEvenOdd(arr3))); // == output3); */
-
-        // method 2: removeVowels
-        /* String input1 = "Hello";
-        String input2 = "AEIOUaeiou";
-        String input3 = "Hi how are...you?";
-        System.out.println(removeVowels(input1));
-        System.out.println(removeVowels(input2));
-        System.out.println(removeVowels(input3)); */
-
-        // method 3: compoundMass
-        /* String compound1 = "D9";
-        String compound2 = "C2C3Z4";
-        String compound3 = "C1D2A3B4";
-        System.out.println(compoundMass(compound1));
-        System.out.println(compoundMass(compound2));
-        System.out.println(compoundMass(compound3)); */
-
-        // method 4: binarizeMatrix
-        /* double[][] matrix1 = {{1.1, -2.2, -3.3}, {-4.4, 5.5, -6.6}, {-7.7, -8.8, 9.9}};
-        double threshold1 = 0.0;
-        double[][] matrix2 = {{-1.8, -2.3}, {-7.4, -3.9}};
-        double threshold2 = -5.5;
-        double[][] matrix3 = {{-100.0, 11.12, 133.001}, {4122.5, 25.23,  -61.442}, {-1092.1,   2.84, 771.555}};
-        double threshold3 = 9999.9999;
-        System.out.println(Arrays.deepToString(binarizeMatrix(matrix1, threshold1)));
-        System.out.println(Arrays.deepToString(binarizeMatrix(matrix2, threshold2)));
-        System.out.println(Arrays.deepToString(binarizeMatrix(matrix3, threshold3))); */
-
-        // method 5: encryptString
-        /* String encrypt1 = "abcdefg, hijklmn, OPQRST, UVWXYZ!";
-        String encrypt2 = "ENCRYPT encrypt?";
-        String encrypt3 = "CsE BaSeMeNt >.<";
-        System.out.println(encryptString(encrypt1));
-        System.out.println(encryptString(encrypt2));
-        System.out.println(encryptString(encrypt3)); */
-
-        // method 6: rotateArray
-        /* double[] rotate1 = {1.1, 2.2};
-        double[] rotate2 = {1.1, 2.2, 3.3, 4.4, 5.5};
-        boolean left = true;
-        boolean right = false;
-        System.out.println(Arrays.toString(rotateArray(rotate1, left)));
-        System.out.println(Arrays.toString(rotateArray(rotate2, left)));
-        System.out.println(Arrays.toString(rotateArray(rotate2, right))); */
-
-        // method 7: rotateTriplets
-        /* double[] rotate3 = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6};
-        double[] rotate4 = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7};
-        System.out.println(Arrays.toString(rotateTriplets(rotate2)));
-        System.out.println(Arrays.toString(rotateTriplets(rotate3)));
-        System.out.println(Arrays.toString(rotateTriplets(rotate4))); */
-
-        // method 8: subsetChecker
-        /* int[] set1_1 = {};
-        int[] set1_2 = {1, 2, 3, 4};
-        int[] set1_3 = {-2, 6, 7, 8};
-        int[] set2_1 = {1, 2, 3};
-        int[] set2_2 = {-10, -2, 1, 2, 3, 6, 7, 8, 9};
-        System.out.println(subsetChecker(set1_1, set2_1));
-        System.out.println(subsetChecker(set1_2, set2_1));
-        System.out.println(subsetChecker(set1_3, set2_2)); */
-
-        // method 9: numpadSRC
-        int num1 = 35777;
-        int num2 = 546540;
-        int num3 = 7711404;
-        System.out.println(numpadSRC(num1));
-        System.out.println(numpadSRC(num2));
-        System.out.println(numpadSRC(num3));
-
-    }
+    private static final int NUMPAD_ROWS = 4;
+    private static final int NUMPAD_COLS = 3;
+    private static final int NUMPAD_ROW_CONVERT = 2;
+    private static final int NUMS_PER = 3;
 
     /**
-     * Description of method
+     * A method that takes an array and checks whether any odd position contains an odd element
+     * and any even position contains an even element
      *
-     * @param para1 Description of para1
-     * @param para2 Description of para2
-     * @return Description of return value
+     * @param arr array of integers
+     * @return output array of booleans indicating whether input index & value have same parity
      */
     public static boolean[] arrEvenOdd(int[] arr) {
         boolean[] output = new boolean[arr.length];
+        // loops through input array and checks index number against element % 2
         for (int i = 0; i < arr.length; i++) {
             if (i % ODD_EVEN == arr[i] % ODD_EVEN) {
                 output[i] = true;
@@ -124,9 +45,16 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes a string input and returns the string with all vowels removed
+     *
+     * @param input String with any characters, punctuation, capitalization
+     * @return output String with all the same characters but no vowels of either case
+     */
     public static String removeVowels(String input) {
         String vowels = "aeiouAEIOU";
         String output = "";
+        // loops through input String and checks if each character is present in the vowels String
         for (int i = 0; i < input.length(); i++) {
             if (vowels.indexOf(input.charAt(i)) == -1) {
                 output += input.charAt(i);
@@ -135,11 +63,18 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes a string compound and calculates its mass
+     *
+     * @param compound String with elements, capital letters (A-Z), followed by counts (1-9)
+     * @return mass of compounds from summation of products of element letter weight and count
+     */
     public static int compoundMass(String compound) {
         int mass = 0;
         char element;
         int elementMass;
         int count;
+        // loops through compound elements, every 2 characters, and multiplies by following count
         for (int i = 0; i < compound.length(); i += 2) {
             element = compound.charAt(i);
             elementMass = (int) element - (ASCII_MIN_UPPER - 1);
@@ -149,10 +84,18 @@ public class Startup {
         return mass;
     }
 
+    /**
+     * A method that takes a 2-dimensional matrix and threshold and returns the binarized matrix
+     *
+     * @param matrix double[][] rectangular matrix to be binarized
+     * @param threshold to compare whether elements are smaller (0) or equal / greater (1)
+     * @return output same size as input with binary values showing element compared to threshold
+     */
     public static int[][] binarizeMatrix(double[][] matrix, double threshold) {
         int num_rows = matrix.length;
         int num_cols = matrix[0].length;
         int[][] output = new int[num_rows][num_cols];
+        // loops through elements in input matrix and compares element value against threshold
         for (int i = 0; i < num_rows; i++) {
             for (int j = 0; j < num_cols; j++) {
                 if (matrix[i][j] < threshold) {
@@ -165,31 +108,50 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes a string and encrypts it by applying the Atbash cipher on letters
+     * (upper and lowercase), recersing the encrypted string, and then returning this
+     *
+     * @param input String of characters, punctuation, letters of both cases
+     * @return output String reversing input string, encrypting letters, maintaining other chars
+     */
     public static String encryptString(String input) {
         String output = "";
-        char next;
+        char checking;
         int asciiVal;
+        // loops through string backwards
         for (int i = input.length() - 1; i >= 0; i--) {
-            next = input.charAt(i);
-            asciiVal = (int) next;
+            checking = input.charAt(i);
+            asciiVal = (int) checking;
+            // checks if character's ascii value makes it an upper or lowercase letter
             if (asciiVal >= ASCII_MIN_UPPER && asciiVal <= ASCII_MAX_UPPER) {
-                next = (char) (ASCII_MIN_UPPER + ASCII_MAX_UPPER - asciiVal);
+                // encrypts by subtracting this ascii value from sum of max & min valuess of case
+                checking = (char) (ASCII_MIN_UPPER + ASCII_MAX_UPPER - asciiVal);
             } else if (asciiVal >= ASCII_MIN_LOWER && asciiVal <= ASCII_MAX_LOWER) {
-                next = (char) (ASCII_MIN_LOWER + ASCII_MAX_LOWER - asciiVal);
+                checking = (char) (ASCII_MIN_LOWER + ASCII_MAX_LOWER - asciiVal);
             }
-            output += next;
+            output += checking;
         }
         return output;
     }
 
+    /**
+     * A method that takes an array and a direction and rotates the array to specified direction
+     * for 1 position (index). Direction true means rotating to the left; otherwise to the right
+     *
+     * @param arr array of doubles to be rotated
+     * @return output with each original element shifted one position and the tail element wrapped
+     */
     public static double[] rotateArray(double[] arr, boolean direction) {
         double[] output = new double[arr.length];
         if (direction) {
+            // for left direction, decreases index of each element and moves first to the end
             for (int i = 1; i < arr.length; i++) {
                 output[i - 1] = arr[i];
             }
             output[arr.length - 1] = arr[0];
         } else {
+            // for right, increases index of each element and moves last one to the start
             for (int i = 0; i < arr.length - 1; i++) {
                 output[i + 1] = arr[i];
             }
@@ -198,12 +160,22 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes an array rotates every 3 consecutive numbers in alternating directions,
+     * starting with rotating the first 3 to the left. If the last group has 1 number, it is kept
+     * unchanged; if is has 2 numbers, they are swapped
+     *
+     * @param arr array of doubles to be swapped in triplets
+     * @return output with original pairs of 3 numbers rotated in alternating directions
+     */
     public static double[] rotateTriplets(double[] arr) {
         int i = 0;
         int elementsLeft = arr.length;
         int tripletsSeen = 0;
         double[] output = new double[arr.length];
+        // moves pointer through input array to rotate 3 elements at a time and track direction
         while (elementsLeft >= TRIPLET_LEN) {
+            // at even counts of triplets passed, rotates the elements left; otherwise, right
             if (tripletsSeen % 2 == 0) {
                 output[i] = arr[i + 1];
                 output[i + 1] = arr[i + 2];
@@ -217,6 +189,7 @@ public class Startup {
             i += 3;
             tripletsSeen++;
         }
+        // if there are 2 elements left at the end, swaps them; if 1 element, remains unchanged
         if (elementsLeft == 2) {
             output[i] = arr[i +1];
             output[i + 1] = arr[i];
@@ -226,18 +199,30 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes 2 arrays of integers and checks if the first is a subset of the second
+     *
+     * @param set1 array of integers to be checked as a subset w no duplicates & in ascending order
+     * @param set2 array of integers to be checked as encompassing set; in ascending order
+     * @return output array of booleans indicating whether the input index & value have the same parity
+     */
     public static boolean subsetChecker(int[] set1, int[] set2) {
         boolean output = true;
+        // counter for indices of 2nd set
         int j = 0;
+        // loops through 1st set; uses assumptions that both arrays are sorted in ascending order
         for (int i = 0; i < set1.length; i++) {
             if (set1.length <= 1) {
                 return output;
             } else if (j >= set2.length || set1[i] < set2[j]) {
+                // checked all values of 2nd set or 1st set element won't appear in 2nd anymore
                 output = false;
                 return output;
             } else if (set1[i] == set2[j]) {
+                // element of 1st set is equal to current in 2nd; continue to next 2nd set index
                 j++;
             } else {
+                // check same 1st set element against next 2nd set element
                 i--;
                 j++;
             }
@@ -245,43 +230,45 @@ public class Startup {
         return output;
     }
 
+    /**
+     * A method that takes an integer and checks if all digits are int eh same row or column of the
+     * numpad, assuming the input number is non-negative. The rows are {0, 123, 456, 789} and the
+     * columns are {0147, 0258, 0369} with 0 being in all 3 columns
+     *
+     * @param num integer that is non-negative
+     * @return same boolean indicating whether all digits are in either the same row or column
+     */
     public static boolean numpadSRC(int num) {
-        boolean same = true;
+        int lastDigit;
         String number = String.valueOf(num);
-        String seen = "";
-        String rows = "147258369";
-        char uniqueChar = '0';
-        for (int i = 0; i < number.length() - 1; i++) {
-            char thisChar = number.charAt(i);
-            char nextChar = number.charAt(i + 1);
-            if (thisChar == uniqueChar) {
-                same = false;
-                break;
-            } else if (seen.indexOf(thisChar) != -1) {
-                continue;
-            } else if (rows.indexOf(thisChar)%TRIPLET_LEN != rows.indexOf(nextChar)%TRIPLET_LEN) {
-                same = false;
-                break;
+        // will track how many digits fall in each row and column of the numpad by indices of array
+        int[] rows = new int[NUMPAD_ROWS];
+        int[] cols = new int[NUMPAD_COLS];
+        // loops through digits in input to check & truncate each last digit
+        for (int i = 0; i < number.length(); i++) {
+            lastDigit = num % 10;
+            num /= 10;
+            // special case for 0 digit that adds to own row and every single column
+            if (lastDigit == 0) {
+                rows[0] += 1;
+                for (int j = 0; j < cols.length; j++) {
+                    cols[j]++;
+                }
+            } else {
+                // evaluates row & column of digit to fill corresponding indices in both arrays
+                rows[(lastDigit + NUMPAD_ROW_CONVERT) / NUMS_PER]++;
+                cols[lastDigit % NUMS_PER]++;
             }
-            seen += thisChar;
         }
-        if (same) return same;
-        seen = "";
-        same = true;
-        String cols = "123456789";
-        for (int i = 0; i < number.length() - 1; i++) {
-            char thisChar = number.charAt(i);
-            char nextChar = number.charAt(i + 1);
-            if (seen.indexOf(thisChar) != -1) {
-                continue;
-            } else if (thisChar == uniqueChar) {
-                continue;
-            } else if (cols.indexOf(thisChar)%TRIPLET_LEN != cols.indexOf(nextChar)%TRIPLET_LEN) {
-                same = false;
-                break;
-            }
-            seen += thisChar;
+        boolean same = true;
+        // checks if any index in either array is equal to the number of digits in input integer
+        for (int same_row : rows) {
+            if (same_row == number.length()) return same;
         }
+        for (int same_col : cols) {
+            if (same_col == number.length()) return same;
+        }
+        same = false;
         return same;
     }
 
